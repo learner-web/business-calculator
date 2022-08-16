@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/dist/css/bootstrap.min.css">
+    <style>
+        .form-control{
+            width: 60vw;
+        }
+        .card{
+            width: 80vw;
+        }
+        .btn-primary{
+            width: fit-content;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <p class="h5 bold">business calculator
+        use this tool to calculate your busness
+    </p>
+    <select class="form-select" required="">
+        <option selected="" disabled="" value="">Choose...</option>
+        <option>...</option>
+      </select>
+    <div class="card">
+       <h5 class="card-title">add</h5>
+       <input class="form-control" id="money1" type="number"/>
+       <input id="money2" type="number" class="form-control"/>
+       <button onclick="add()" class="btn btn-primary">calculate</button>
+       <p id="result1"></p>
+    </div>
+    <div class="card">
+        profit
+        <input id="op1" type="number" class="form-control" placeholder="original price">
+        <input type="number" id="sp1" class="form-control" placeholder="selling price">
+        <button onclick="profn()" class="btn btn-primary">calculate</button>
+        <p id="prof"></p> <p id="perprof"></p>
+    </div>
+    <div class="card">
+        loss
+        <input type="number" id="op2" class="form-control" placeholder="original price">
+        <input type="number" id="sp2" class="form-control" placeholder="selling price">
+        <button onclick="loss()" class="btn btn-primary">calculate</button>
+        <p id="loss"></p> <p id="perloss"></p>
+    </div>
+    <div class="card">
+        discount
+        <input type="number" id="op3" class="form-control" placeholder="original price">
+        <input type="number" id="perdis" class="form-control" max="100" min="1" placeholder="percentage">%
+        <button onclick="disc()"  class="btn btn-primary">calculate</button>
+        <p id="discount"></p> <p id="total"></p>
+    </div>
+    <div class="card"> 
+        commision
+        <input type="number" class="form-control" id="op5"  placeholder="original price">
+        <input type="number" class="form-control" id="comsn" placeholder="percentage">
+        <button onclick="coms()" class="btn btn-primary">calculate</button>
+        <p id="comisin"></p>
+    </div>
+    <script>
+        
+        var op1 = document.getElementById("op1");
+        var op2 = document.getElementById("op2");
+        var op3 = document.getElementById("op3");
+        var totals = document.getElementById("total");
+        var profit = document.getElementById("profit");
+        var los = document.getElementById("loss");
+        var result1 = document.getElementById("result1");
+        var money1 = document.getElementById("money1");
+        var money2 = document.getElementById("money2");
+        var perprof = document.getElementById("perprof");
+        var perloss = document.getElementById("perloss");
+        var perdis = document.getElementById("perdis");
+        var discount = document.getElementById("discount");
+        var op5 = document.getElementById("op5");
+        var comsn = document.getElementById("comsn");
+        var comisin = document.getElementById("comisin");
+        var prof = document.getElementById("prof");
+       function add() {
+           var result = Number(money1.value) + Number(money2.value);
+           result1.innerText = result;
+       }
+        function profn() {
+            var result = Number(sp1.value) - Number(op1.value);
+            var per = result/Number(sp1.value)*100;
+            prof.innerText = result;
+            perprof.innerText= per+"%";
+        }
+        function loss() {
+            var result = Number(sp2.value) - Number(op2.value);
+            var per = result/Number(sp1.value)*100;
+            los.innerText = result;
+            perloss.innerText= per+"%";
+        }
+        function disc() {
+            var per = Number(perdis.value)/100 * Number(op3.value);
+            var total = Number(op3.value) - per;
+            discount.innerText = per;
+            totals.innerText= total;
+        }
+        function coms() {
+            var per = Number(comsn.value)/100 * Number(op5.value);
+            comisin.innerText = per;
+        }
+    </script>
+</body>
+</html>
